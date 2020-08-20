@@ -32,7 +32,7 @@ function start() {
         message: "Please choose one of the following:",
         choices: [
             "View all Employees",
-            "View all the Departments",
+            "View all Departments",
             "View all Roles", 
             "Add Employees",
             "Add Department",
@@ -47,7 +47,6 @@ function start() {
             employeeView();
             break;
 
-            case "View "
-
         }
-  }
+  })
+}
