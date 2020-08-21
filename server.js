@@ -38,6 +38,7 @@ const start = () => {
         "Add Department",
         "Add Role",
         "Update Employee Role",
+        "Update Employee Managers",
         "Exit",
       ],
     })
@@ -63,6 +64,9 @@ const start = () => {
           break;
         case "Update Employee Role":
           updateEmployeeRole();
+          break;
+          case "Update Employee Managers":
+          updateEmployeeManager();
           break;
         case "Exit":
           exit();
@@ -277,35 +281,70 @@ function addRole(){
     }
 
 
-function updateEmployeeRole()
-{
-    console.log('updating emp');
-    inquirer
-      .prompt({
-        name: "id",
-        type: "input",
-        message: "Enter employee id",
-      })
-      .then(function (answer) {
-        var id = answer.id;
-        inquirer
-          .prompt({
-            name: "roleId",
-            type: "input",
-            message: "Enter role id",
-          })
-          .then(function (answer) {
-            var roleId = answer.roleId;
-            var query = "UPDATE employee SET role_id=? WHERE id=?";
-            connection.query(query, [roleId, id], function (err, res) {
-              if (err) {
-                console.log(err);
-              }
-              start();
-            });
+function updateEmployeeRole() {
+  
+  inquirer
+    .prompt({
+      name: "id",
+      type: "input",
+      message: "Enter employee id",
+    })
+    .then(function (answer) {
+      var id = answer.id;
+      inquirer
+        .prompt({
+          name: "roleId",
+          type: "input",
+          message: "Enter role id",
+        })
+        .then(function (answer) {
+          var roleId = answer.roleId;
+          var query = "UPDATE employee SET role_id=? WHERE id=?";
+          connection.query(query, [roleId, id], function (err, res) {
+            if (err) {
+              console.log(err);
+            }
+            console.log('updating employee role');
+            start();
           });
-      });
-  }
+        });
+    });
+}
+
+function updateEmployeeManager() {
+  inquirer
+    .prompt({
+      name: "empID",
+      type: "input",
+      message: "Enter employee id",
+    })
+    .then(function (answer) {
+      var id = answer.id;
+      inquirer
+        .prompt({
+          name: "manID",
+          type: "input",
+          message: "Enter manager ID",
+        })
+        .then(function (answer) {
+          var manId = answer.manID;
+          var query = "UPDATE employee SET role_id=? WHERE manager_id=?";
+          connection.query(query, [manId, id], function (err, res) {
+            if (err) {
+              console.log(err);
+            }
+            console.log('updating employee manager');
+            start();
+            
+          });
+        });
+    });
+
+}
+
+
+
+
 
 
 
