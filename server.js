@@ -287,7 +287,7 @@ function updateEmployeeRole() {
     .prompt({
       name: "id",
       type: "input",
-      message: "Enter employee id",
+      message: "Enter employee ID",
     })
     .then(function (answer) {
       var id = answer.id;
@@ -295,7 +295,7 @@ function updateEmployeeRole() {
         .prompt({
           name: "roleId",
           type: "input",
-          message: "Enter role id",
+          message: "Enter role ID",
         })
         .then(function (answer) {
           var roleId = answer.roleId;
@@ -316,10 +316,10 @@ function updateEmployeeManager() {
     .prompt({
       name: "empID",
       type: "input",
-      message: "Enter employee id",
+      message: "Enter employee ID",
     })
     .then(function (answer) {
-      var id = answer.id;
+      var empid = answer.empID;
       inquirer
         .prompt({
           name: "manID",
@@ -328,8 +328,8 @@ function updateEmployeeManager() {
         })
         .then(function (answer) {
           var manId = answer.manID;
-          var query = "UPDATE employee SET role_id=? WHERE manager_id=?";
-          connection.query(query, [manId, id], function (err, res) {
+          var query = "UPDATE employee SET manager_id=? WHERE id=?";
+          connection.query(query, [manId, empid], function (err, res) {
             if (err) {
               console.log(err);
             }

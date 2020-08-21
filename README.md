@@ -50,7 +50,7 @@ So that I can organize and plan my business
 
 ## Submission on BCS
 
-* The URL of the GitHub repository
+* The URL of the GitHub repository: https://github.com/dlekwjd347/Elizabeth-Employee-Tracker 
 
 * A video demonstrating the entirety of the app's functionality 
 
