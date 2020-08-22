@@ -39,6 +39,10 @@ const start = () => {
         "Add Role",
         "Update Employee Role",
         "Update Employee Managers",
+        "View Employee Managers",
+        "Remove Employee",
+        "Remove Role",
+        "Remove Department",
         "Exit",
       ],
     })
@@ -65,8 +69,20 @@ const start = () => {
         case "Update Employee Role":
           updateEmployeeRole();
           break;
-          case "Update Employee Managers":
+        case "Update Employee Managers":
           updateEmployeeManager();
+          break;
+        case "View Employee by Manager":
+          EmployeebyManagerView();
+          break;
+        case "Remove Employee":
+          employeeRemove();
+          break;
+        case "Remove Role":
+          roleRemove();
+          break;
+        case "Remove Department":
+            deptRemove();
           break;
         case "Exit":
           exit();
@@ -82,7 +98,7 @@ const start = () => {
 // Function that SELECTS ALL FROM role in our schema.sql/mysql workbench.
 // Connection.query helps us to connect the query
 // This will go for all of the functions created
-function employeeView() {
+const employeeView = () => {
   connection.query("SELECT * FROM employee", function (err, res) {
     if (err) throw err;
     console.log("\n");
@@ -91,7 +107,8 @@ function employeeView() {
     start();
   });
 }
-function departmentView() {
+
+const departmentView = () => {
   connection.query("SELECT * FROM department", function (err, res) {
     if (err) throw err;
     console.log("\n");
@@ -100,7 +117,8 @@ function departmentView() {
     start();
   });
 }
-function roleView() {
+
+const roleView = () => {
   connection.query("SELECT * FROM role", function (err, res) {
     if (err) throw err;
     console.log("\n");
@@ -110,7 +128,7 @@ function roleView() {
   });
 }
 
-function addEmployee() {
+const addEmployee = () => {
   //empty array to push inputs inside of
   let employeeList = [];
   let employeeIdList = [];
@@ -183,7 +201,7 @@ function addEmployee() {
   });
 }
 
-function addDepartment() {
+const addDepartment = () => {
   let departmentList = [];
   let departmentIdList = [];
 
@@ -224,7 +242,7 @@ function addDepartment() {
     );
   };
 
-function addRole(){
+const addRole = () => {
   let roleList = [];
   let roleIdList = [];
 
@@ -281,7 +299,7 @@ function addRole(){
     }
 
 
-function updateEmployeeRole() {
+const updateEmployeeRole = () => {
   
   inquirer
     .prompt({
@@ -311,7 +329,7 @@ function updateEmployeeRole() {
     });
 }
 
-function updateEmployeeManager() {
+const updateEmployeeManager = () => {
   inquirer
     .prompt({
       name: "empID",
@@ -342,8 +360,83 @@ function updateEmployeeManager() {
 
 }
 
+// function EmployeebyManagerView() {
+// //   var empManager = managerId
+// //   connection.query("SELECT * FROM employee WHERE ?", function (err, res) {
+// //     connection.query(query, [manId, empid], function (err, res) {
+// //       if (err) {
+// //         console.log(err);
+// //       }
+// //       console.log('updating employee manager');
+// //       start();
 
+// //       start();
+// //     });
+// //   },
+// }
 
+const employeeRemove = () => {
+  connection.query("SELECT employee.first_name, employee.last_name FROM employee", (err, results) => {
+    if (err) throw err;
+    // console.log(' ');
+    inquirer.prompt([
+      {
+        name: 'IDtoRemove',
+        type: 'input',
+        message: 'Enter the Employee ID of the person to remove:'
+      }
+    ]).then((answer) => {
+      connection.query(`DELETE FROM employee where ?`, { id: answer.IDtoRemove });
+      console.log("Your Employee has been removed");
+      start();
+    })
+  })
+}
+
+const roleRemove = ()  => {
+  query = `SELECT * FROM role`;
+  connection.query(query, (err, results) => {
+      if (err) throw err;
+
+      inquirer.prompt([
+          {
+              name: 'removeRole',
+              type: 'list',
+              choices: function () {
+                  let choiceArray = results.map(choice => choice.title);
+                  return choiceArray;
+              },
+              message: 'Select a Role to remove:'
+          }
+      ]).then((answer) => {
+          connection.query(`DELETE FROM role WHERE ? `, { title: answer.removeRole });
+          start();
+
+      })
+
+  })
+}
+const deptRemove = () => {
+  query = `SELECT * FROM department`;
+  connection.query(query, (err, results) => {
+      if (err) throw err;
+
+      inquirer.prompt([
+          {
+              name: 'dept',
+              type: 'list',
+              choices: function () {
+                  let choiceArray = results.map(choice => choice.department_name);
+                  return choiceArray;
+              },
+              message: 'Select the department to remove:'
+          }
+      ]).then((answer) => {
+          connection.query(`DELETE FROM department WHERE ? `, { department_name: answer.dept })
+          start();
+      })
+  })
+}
 
 
 
