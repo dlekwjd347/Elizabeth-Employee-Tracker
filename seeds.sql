@@ -9,11 +9,11 @@ INSERT INTO department (name) VALUES ("Finance");
 
 ----- Role Seeds -----
 
-INSERT INTO role (title, salary, department_id) VALUES ("Lead Engineer", 70, 3);
-INSERT INTO role (title, salary, department_id) VALUES ("Accountant", 50, 2);
-INSERT INTO role (title, salary, department_id) VALUES ("Salesperson", 50, 2);
-INSERT INTO role (title, salary, department_id) VALUES ("Software Engineer", 100, 1);
-INSERT INTO role (title, salary, department_id) VALUES ("Sales Lead", 100, 4);
+INSERT INTO role (title, salary, department_id) VALUES ("Lead Engineer", 90000, 3);
+INSERT INTO role (title, salary, department_id) VALUES ("Accountant", 50000, 2);
+INSERT INTO role (title, salary, department_id) VALUES ("Salesperson", 50000, 2);
+INSERT INTO role (title, salary, department_id) VALUES ("Software Engineer", 80000, 1);
+INSERT INTO role (title, salary, department_id) VALUES ("Sales Lead", 70000, 4);
 
 ----- Employees Seeds -----
 

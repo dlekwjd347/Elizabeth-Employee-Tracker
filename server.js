@@ -43,6 +43,7 @@ const start = () => {
         "Remove Employee",
         "Remove Role",
         "Remove Department",
+        "View Budget by Department",
         "Exit",
       ],
     })
@@ -83,6 +84,9 @@ const start = () => {
           break;
         case "Remove Department":
             deptRemove();
+          break;
+        case "View Budget by Department":
+          viewBudget();
           break;
         case "Exit":
           exit();
@@ -352,6 +356,7 @@ const updateEmployeeManager = () => {
               console.log(err);
             }
             console.log('updating employee manager');
+            console.table(res);
             start();
             
           });
@@ -442,7 +447,27 @@ const deptRemove = () => {
   })
 }
 
-
+const viewBudget = () => {
+let departmentList = ["Engineering", "Sales", "Information Technology", "Finance"];
+  inquirer
+    .prompt({
+      name: "dptID",
+      type: "list",
+      message: "Choose a department to see the budget",
+      choices: departmentList
+    }).then(function (response) {
+      var dptID = response.dptID;
+      var query = "SELECT name, SUM(salary) FROM department LEFT JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id GROUP BY ?;"
+      connection.query(query, dptID, function (err, res) {
+        if (err) {
+          console.log(err);
+        }
+        console.table(res);
+        start();
+      });
+    }
+    )
+}
 
 
 
