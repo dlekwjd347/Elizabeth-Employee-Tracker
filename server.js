@@ -451,14 +451,14 @@ const viewBudget = () => {
 let departmentList = ["Engineering", "Sales", "Information Technology", "Finance"];
   inquirer
     .prompt({
-      name: "dptID",
+      name: "dptList",
       type: "list",
       message: "Choose a department to see the budget",
       choices: departmentList
     }).then(function (response) {
-      var dptID = response.dptID;
+      var dptList = response.dptList;
       var query = "SELECT name, SUM(salary) FROM department LEFT JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id GROUP BY ?;"
-      connection.query(query, dptID, function (err, res) {
+      connection.query(query, dptList, function (err, res) {
         if (err) {
           console.log(err);
         }
@@ -468,11 +468,6 @@ let departmentList = ["Engineering", "Sales", "Information Technology", "Finance
     }
     )
 }
-
-
-
-
-
 
 function exit() {
   connection.end();
