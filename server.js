@@ -39,7 +39,7 @@ const start = () => {
         "Add Role",
         "Update Employee Role",
         "Update Employee Managers",
-        "View Employee Managers",
+        "View Employee by Manager",
         "Remove Employee",
         "Remove Role",
         "Remove Department",
@@ -360,20 +360,24 @@ const updateEmployeeManager = () => {
 
 }
 
-// function EmployeebyManagerView() {
-// //   var empManager = managerId
-// //   connection.query("SELECT * FROM employee WHERE ?", function (err, res) {
-// //     connection.query(query, [manId, empid], function (err, res) {
-// //       if (err) {
-// //         console.log(err);
-// //       }
-// //       console.log('updating employee manager');
-// //       start();
-
-// //       start();
-// //     });
-// //   },
-// }
+const EmployeebyManagerView = () => {
+  inquirer
+  .prompt({
+    name: "manID",
+    type: "input",
+    message: "Enter manager ID",
+  }).then (function(response) {
+    var manID = response.manID;
+    var query = "SELECT * FROM employee AS manager LEFT JOIN employee AS e ON manager.id = e.manager_id WHERE manager.id = ?";
+    connection.query(query, manID, function (err, res) {
+        if (err) {
+          console.log(err);
+        }
+        console.table(res);
+        start();
+    });
+  }
+  )}
 
 const employeeRemove = () => {
   connection.query("SELECT employee.first_name, employee.last_name FROM employee", (err, results) => {
