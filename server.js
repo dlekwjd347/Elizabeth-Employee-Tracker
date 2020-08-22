@@ -74,7 +74,7 @@ const start = () => {
           updateEmployeeManager();
           break;
         case "View Employee by Manager":
-          EmployeebyManagerView();
+          employeebyManagerView();
           break;
         case "Remove Employee":
           employeeRemove();
@@ -365,7 +365,7 @@ const updateEmployeeManager = () => {
 
 }
 
-const EmployeebyManagerView = () => {
+const employeebyManagerView = () => {
   inquirer
   .prompt({
     name: "manID",
