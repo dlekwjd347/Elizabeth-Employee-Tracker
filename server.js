@@ -136,7 +136,7 @@ const addEmployee = () => {
   //empty array to push inputs inside of
   let employeeList = [];
   let employeeIdList = [];
-  let roleList =["Lead Engineer", "Accountant", "Salesperson", "Software Engineer", "Sales Lead"];
+  let roleList =[];
   //empty array to push inputs inside of
   let managerList = [];
   let managerIdList = [];
@@ -173,10 +173,9 @@ const addEmployee = () => {
             message: "What is the Employee's last name?",
           },
           {
-            type: "list",
+            type: "input",
             name: "role",
             message: "What is the Employee's Role ID?",
-            choices: roleList,
           },
           {
             type: "list",
