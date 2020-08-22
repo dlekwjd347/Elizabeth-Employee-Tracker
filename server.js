@@ -136,29 +136,27 @@ const addEmployee = () => {
   //empty array to push inputs inside of
   let employeeList = [];
   let employeeIdList = [];
-  let roleList =[];
   //empty array to push inputs inside of
   let managerList = [];
   let managerIdList = [];
   let roleIdList = [];
-  connection.query("SELECT * FROM employee_tracker_db.role", function (
-    err,
-    res
-  ) {
-    if (err) throw err;
+  connection.query("SELECT * FROM employee_tracker_db.role", function (err, res) {
+    if (err) 
+    console.log(err);
     for (var i = 0; i < res.length; i++) {
       employeeList.push(res[i].title);
       employeeIdList.push(res[i].id.toString());
+      roleIdList.push(res[i].role_id);
+
     }
-    connection.query("SELECT * FROM employee_tracker_db.employee", function (
-      err,
-      res
-    ) {
-      if (err) throw err;
+    connection.query("SELECT * FROM employee_tracker_db.employee", function (err, res) {
+      if (err) 
+      console.log(err);
       for (var i = 0; i < res.length; i++) {
         managerList.push(res[i].first_name + " " + res[i].last_name);
         managerIdList.push(res[i].id.toString());
       }
+
       // Build out the inquirer prompt to add employee's first name and last name
       inquirer
         .prompt([
@@ -190,7 +188,7 @@ const addEmployee = () => {
             [
               val.firstName,
               val.lastName,
-              roleIdList[roleList.indexOf(val.role)],
+              val.role,
               managerIdList[managerList.indexOf(val.managerId)],
             ],
             function (err, res) {
