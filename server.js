@@ -136,9 +136,11 @@ const addEmployee = () => {
   //empty array to push inputs inside of
   let employeeList = [];
   let employeeIdList = [];
+  let roleList =["Lead Engineer", "Accountant", "Salesperson", "Software Engineer", "Sales Lead"];
   //empty array to push inputs inside of
   let managerList = [];
   let managerIdList = [];
+  let roleIdList = [];
   connection.query("SELECT * FROM employee_tracker_db.role", function (
     err,
     res
@@ -426,6 +428,7 @@ const roleRemove = ()  => {
   })
 }
 const deptRemove = () => {
+  const deptList = ["Engineering", "Sales", "Information Technology", "Finance"]
   query = `SELECT * FROM department`;
   connection.query(query, (err, results) => {
       if (err) throw err;
@@ -434,14 +437,11 @@ const deptRemove = () => {
           {
               name: 'dept',
               type: 'list',
-              choices: function () {
-                  let choiceArray = results.map(choice => choice.department_name);
-                  return choiceArray;
-              },
+              choices: deptList,
               message: 'Select the department to remove:'
           }
       ]).then((answer) => {
-          connection.query(`DELETE FROM department WHERE ? `, { department_name: answer.dept })
+          connection.query(`DELETE FROM department WHERE ? `, answer.dept)
           start();
       })
   })
