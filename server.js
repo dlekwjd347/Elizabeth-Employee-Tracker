@@ -284,11 +284,7 @@ const addRole = () => {
           ])
           .then((val) => {
             connection.query(
-              "INSERT INTO role SET ?",
-              {
-                title: val.title,
-              },
-              function (err, res) {
+              "INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [val.title, val.salary, val.deptId], function (err, res) {
                 if (err) throw err;
                 console.log("\n");
                 console.log("successfully added Role");
