@@ -38,7 +38,7 @@ So that I can organize and plan my business
 
 ## Deployed Screenshots: 
 
-![addAll](http://url/to/img.png)
-![viewAll](http://url/to/img.png)
-![remove](http://url/to/img.png)
-![updateAll](http://url/to/img.png)
+![addAll](https://github.com/dlekwjd347/Elizabeth-Employee-Tracker/blob/master/assets/screenshots/addAll.JPG)
+![viewAll](https://github.com/dlekwjd347/Elizabeth-Employee-Tracker/blob/master/assets/screenshots/viewAll.JPG)
+![remove](https://github.com/dlekwjd347/Elizabeth-Employee-Tracker/blob/master/assets/screenshots/remove.JPG)
+![updateAll](https://github.com/dlekwjd347/Elizabeth-Employee-Tracker/blob/master/assets/screenshots/updateAll.JPG)
