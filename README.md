@@ -31,7 +31,14 @@ So that I can organize and plan my business
 
 * The URL of the GitHub repository: https://github.com/dlekwjd347/Elizabeth-Employee-Tracker 
 
-* A video demonstrating the entirety of the app's functionality 
+* A video demonstrating the entirety of the app's functionality: https://drive.google.com/file/d/1wmS-gIPBpjIFZmYQ6onKVIy28rJvE8wz/view 
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
+## Deployed Screenshots: 
+
+![addAll](http://url/to/img.png)
+![viewAll](http://url/to/img.png)
+![remove](http://url/to/img.png)
+![updateAll](http://url/to/img.png)
