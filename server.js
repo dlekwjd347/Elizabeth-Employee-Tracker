@@ -441,13 +441,14 @@ const deptRemove = () => {
 }
 
 const viewBudget = () => {
-let departmentList = ["Engineering", "Sales", "Information Technology", "Finance"];
+const deptIndex = connection.query("SELECT name FROM department")
+let deptIndexMap = deptIndex.map(val => val) ;
   inquirer
     .prompt({
       name: "dptList",
       type: "list",
       message: "Choose a department to see the budget",
-      choices: departmentList
+      choices: deptIndexMap
     }).then(function (response) {
       var dptList = response.dptList;
       var query = "SELECT name, SUM(salary) FROM department LEFT JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id GROUP BY ?;"
